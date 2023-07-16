@@ -1,0 +1,35 @@
+# gender
+fe_gender = df5.groupby('gender').size() / len(df5)
+df5.loc[:, 'gender'] = df5['gender'].map( fe_gender )
+
+# customer_type - Frequency Encoding / Target Encoding / Weighted Targed Encoding
+fe_customer_type = df5.groupby( 'customer_type').size() / len( df5 )
+df5.loc[:, 'customer_type'] = df5['customer_type'].map( fe_customer_type )
+
+from sklearn                 import preprocessing   as pp
+mms_age = pp.MinMaxScaler()
+# Age
+df5['age'] = mms_age.fit_transform( df5[['age']].values )
+
+from sklearn.preprocessing   import OrdinalEncoder
+oenc = OrdinalEncoder()
+# Store Size
+df5['store_size'] = oenc.fit_transform( df5[['store_size']].values )
+
+
+====================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
